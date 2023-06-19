@@ -4,9 +4,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from bs4 import BeautifulSoup as BS
+
 import pandas as pd
 import numpy as np
 import time
+import requests
 
 def css_finds(css_selector):
     return driver.find_elements(By.CSS_SELECTOR, css_selector)
@@ -30,6 +33,13 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--start-maximized')
 options.add_argument('incognito')
 
-driver = webdriver.Chrome("./chromedriver.exe", options=options)
-driver.get("") # naverCafe URL
-wait = WebDriverWait(driver, 10)
+# driver = webdriver.Chrome("./chromedriver.exe", options=options)
+# wait = WebDriverWait(driver, 10)
+
+URL = "https://naver.com"
+
+# driver.get(URL) # naverCafe URL
+
+response = requests.get(URL)
+soup = BS(response.content, "html.parser")
+print(soup.contents)

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django. contrib import auth
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from n_c_home.apis.naverCafeApi import NaverCafeMacro
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -27,13 +28,7 @@ def naverCafeInfo(request):
         cafe_B_name = request.POST['cafeBname']
         keyword = request.POST['keyword']
         comments = request.POST['comments']
-    
-    context = {'naver_id':naver_id,
-                'naver_pw':naver_pw,
-                'nick_name':nick_name,
-                'cafe_name':cafe_name,
-                'cafe_B_name':cafe_B_name,
-                'keyword':keyword,
-                'comments':comments}
-    print(context)
-    return render(request, 'index.html', context=context)
+        
+        all_hrefs = NaverCafeMacro(naver_id, naver_pw, nick_name, cafe_name, cafe_B_name, keyword, comments)
+        
+    return render(request, 'index.html', all_hrefs)

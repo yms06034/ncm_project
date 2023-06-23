@@ -21,19 +21,19 @@
                     <label class="label" for="naverid">아이디
                         <span class="required-field">*</span>
                     </label>
-                    <input placeholder="아이디를 입력하세요" autocomplete="off" class="input" required id="naverid" name="naverid" type="text">
+                    <input placeholder="아이디를 입력하세요" class="input" required id="naverid" name="naverid" type="text">
                 </div>
                 <div class="input_area">
                     <label class="label" for="naverpw">비밀번호
                         <span class="required-field">*</span>
                     </label>
-                    <input placeholder="비밀번호를 입력하세요" autocomplete="off" type="password" class="input" required id="naverpw" name="naverpw" type="text">
+                    <input placeholder="비밀번호를 입력하세요" type="text" class="input" required id="naverpw" name="naverpw" type="text">
                 </div>
                 <div class="input_area">
                     <label class="label" for="nickname">닉네임
                         <span class="required-field">*</span>
                     </label>
-                    <input placeholder="네이버 카페의 닉네임을 적어주세요" autocomplete="off" class="input" required id="nickname" name="nickname" type="text">
+                    <input placeholder="네이버 카페의 닉네임을 적어주세요" class="input" required id="nickname" name="nickname" type="text">
                 </div>
             </div>
             <hr />
@@ -47,20 +47,20 @@
                         </div>
                         
                     </label>
-                    <input placeholder="원하시는 카페이름을 넣어주세요" autocomplete="off" class="input" required id="cafename" name="cafename" type="text">
+                    <input placeholder="원하시는 카페이름을 넣어주세요" class="input" required id="cafename" name="cafename" type="text">
                 </div>
                 <div class="input_area">
                     <label class="label" for="cafeBname">게시판 이름
                         <span class="required-field">*</span>
                     </label>
-                    <input placeholder="Ex &#41;  전체글보기" autocomplete="off" class="input" required id="cafeBname" name="cafeBname" type="text">
+                    <input placeholder="Ex &#41;  전체글보기" class="input" required id="cafeBname" name="cafeBname" type="text">
                     <!-- <span class="notice">만일 게시판이름을 넣지 않으시면 <strong>'전체글보기'</strong>로 설정 됩니다.</span> -->
                 </div>
                 <div class="input_area">
                     <label class="label" for="keyword">키워드
                         <span class="required-field">*</span>
                     </label>
-                    <input placeholder="Ex &#41;  강남부동산" autocomplete="off" class="input" required id="keyword" name="keyword" type="text">
+                    <input placeholder="Ex &#41;  강남부동산"  class="input" required id="keyword" name="keyword" type="text">
                 </div>
             </div>
             <div class="btn_id_area">
@@ -68,11 +68,11 @@
                     <label class="label" for="comments">댓글
                         <span class="required-field">*</span>
                     </label>
-                    <textarea class="textarea" placeholder="댓글을 입력하세요" name="comments" id="comments" cols="42" rows="10"></textarea>
+                    <textarea required class="textarea" placeholder="댓글을 입력하세요" name="comments" id="comments" cols="42" rows="10"></textarea>
                     <!-- <input placeholder="댓글을 입력하세요" autocomplete="off" class="input_ably" required id="ablypw" name="ablypw" type="text"> -->
                 </div>
                 <input class="bbtn" type="submit" id="cafeSubmit" value="크롤링 시작" />
-                <input class="bbtn" type="submit" id="cafeStop" value="크롤링 종료" />
+                <!-- <input class="bbtn" type="submit" id="cafeStop" value="크롤링 종료" /> -->
             </div>
         </form>          
     </div>

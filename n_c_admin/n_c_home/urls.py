@@ -5,5 +5,5 @@ app_name='app'
 
 urlpatterns = [
     path("", v.index, name='index'),
-    path("", v.index, name='naverCafeInfo')
+    path("naverCrawling/", v.naverCafeInfo, name='naverCafeInfo')
 ]

@@ -18,49 +18,49 @@ import time
 import requests
 import pyperclip
 
-# NAVER_ID = "sjk5838"
-# NAVER_PW = "rlatjdwls00@K"
+def css_finds(css_selector):
+    return browser.find_elements(By.CSS_SELECTOR, css_selector)
 
-# CAFENAME = "1motion1"
-# BORADTITLE = "전체글보기"
-# NICKNAME = "최고의일베충소정"
+def css_find(css_selector):
+    return browser.find_element(By.CSS_SELECTOR, css_selector)
 
-# keyword = "테스트입니다. 이렇게 적으면 "
-# COMMENTS = "Test Comments"
+def find(wait, css_selector):
+    return wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, css_selector)))
 
-def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keyword, COMMENTS):
+def finds_xpath(xpath):
+    return browser.find_elements(By.XPATH, xpath)
 
-    def css_finds(css_selector):
-        return browser.find_elements(By.CSS_SELECTOR, css_selector)
+def find_xpath(xpath):
+    return browser.find_element(By.XPATH, xpath)
 
-    def css_find(css_selector):
-        return browser.find_element(By.CSS_SELECTOR, css_selector)
+def find_id(id_x):
+    return browser.find_element(By.ID, id_x)
 
-    def find(wait, css_selector):
-        return wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, css_selector)))
+options = webdriver.ChromeOptions()
+options.add_argument('--no-sandbox')
+options.add_argument('no-sandox')
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--start-maximized')
+options.add_argument('incognito')
 
-    def finds_xpath(xpath):
-        return browser.find_elements(By.XPATH, xpath)
+service = Service(ChromeDriverManager().install())
+browser = webdriver.Chrome(service=service, options=options)    
 
-    def find_xpath(xpath):
-        return browser.find_element(By.XPATH, xpath)
+# Settings
+NAVER_ID = "sjk5838"
+NAVER_PW = "rlatjdwls00@K"
 
-    def find_id(id_x):
-        return browser.find_element(By.ID, id_x)
+CAFENAME = "1motion1"
+BORADTITLE = "전체글보기"
+NICKNAME = "최고의일베충소정"
 
-    options = webdriver.ChromeOptions()
-    options.add_argument('--no-sandbox')
-    options.add_argument('no-sandox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--start-maximized')
-    options.add_argument('incognito')
+keyword = "테스트입니다. 이렇게 적으면 "
+COMMENTS = "Test Comments"
 
-    service = Service(ChromeDriverManager().install())
-    browser = webdriver.Chrome(service=service, options=options)    
+# def 1
+# Crawling Start
 
-    # def 1
-    # Crawling Start
-
+def naverCafeMacro(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keyword, COMMENTS):
     browser.get("https://nid.naver.com/nidlogin.login")
     browser.implicitly_wait(2)
 
@@ -125,7 +125,7 @@ def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keywor
         final_hrefs.append(new_url)
 
     while len(final_hrefs) == 0:
-        # final_hrefs가 빈 리스트인 경우, 계속해서 반복적으로 돌립니다.
+        # If final_hrefs is an empty list, continue to rotate repeatedly.
         time.sleep(1)
         browser.refresh()
         
@@ -211,7 +211,7 @@ def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keywor
                     cmtnicks.append(cmtnick)
 
                 if nickname in cmtnicks:
-                    # 내 닉네임으로 댓글이 있는 경우, 다음 페이지로 넘어감
+                    # If you have a comment with my nickname, skip to the next page
                     continue
                 else:
                     # 내 닉네임으로 댓글이 없는 경우, 댓글 작성
@@ -240,5 +240,3 @@ def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keywor
         cmtnicks.clear()
         
     browser.close()
-
-    return final_hrefs

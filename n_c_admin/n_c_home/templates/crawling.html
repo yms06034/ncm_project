@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block header %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="content">
+            <div class="text_area">
+                <p class="title">아이디</p>
+                <p id="naverid"></p>
+            </div>
+            <div class="text_area">
+                <p class="title">닉네임</p>
+                <p id="nickname"></p>
+            </div>
+            <div class="text_area">
+                <p class="title">카페 이름</p>
+                <p id="cafename"></p>
+            </div>
+            <div class="text_area">
+                <p class="title">게시판 이름</p>
+                <p id="cafeBname"></p>
+            </div>
+            <div class="text_area">
+                <p class="title">키워드</p>
+                <p id="keyword"></p>
+            </div>
+            <div class="text_area">
+                <p class="title">댓글 내용</p>
+                <p id="comments"></p>
+            </div>
+        </div>
+
+
+        <button class="back_btn" onclick="history.back()">이전 정보 보러가기</button>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+
+    <script>
+
+        const naverId = '{{ naver_id | safe }}'
+        const nickName = '{{ nick_name | safe }}'
+        const cafeName = '{{ cafe_name | safe }}'
+        const cafeBname = '{{ cafe_B_name | safe }}'
+        const keyWord = '{{ keyword | safe }}'
+        const comments = "{{ comments | safe }}"
+
+        const id = document.getElementById('naverid')
+        const nn = document.querySelector('p#nickname')
+        const cn = document.querySelector('p#cafename')
+        const cbn = document.getElementById('cafeBname')
+        const kw = document.getElementById('keyword')
+        const cmt = document.getElementById('comments')
+        const withoutBrackets = comments.replace(/[\[\]']+/g, '');
+    
+        id.innerText = naverId
+        nn.innerText = nickName
+        cn.innerText = cafeName
+        cbn.innerText = cafeBname
+        kw.innerText = keyWord
+        cmt.innerText = withoutBrackets
+    </script>
+{% endblock %}
+

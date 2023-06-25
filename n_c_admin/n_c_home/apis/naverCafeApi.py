@@ -18,16 +18,6 @@ import time
 import requests
 import pyperclip
 
-# NAVER_ID = "sjk5838"
-# NAVER_PW = "rlatjdwls00@K"
-
-# CAFENAME = "1motion1"
-# BORADTITLE = "전체글보기"
-# NICKNAME = "최고의일베충소정"
-
-# keyword = "테스트입니다. 이렇게 적으면 "
-# COMMENTS = "Test Comments"
-
 def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keyword, COMMENTS):
 
     def css_finds(css_selector):
@@ -239,6 +229,14 @@ def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keywor
 
         cmtnicks.clear()
         
+    time.sleep(3)
     browser.close()
 
-    return final_hrefs
+    title = []
+
+    for da in datas:
+        art_title = da.find(class_='article')
+        art_title.get_text().strip()
+        title.append(art_title)
+
+    return final_hrefs, title

@@ -31,8 +31,8 @@ def naverCafeInfo(request):
         
         comments_list = []
         comments_list.append(comments)
-        
-        # final_hrefs = naverCafeCrawling(naver_id, naver_pw, nick_name, cafe_name, cafe_B_name, keyword, comments)
+        # NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keyword, COMMENTS
+        final_hrefs, title = naverCafeCrawling(naver_id, naver_pw, cafe_name, cafe_B_name, nick_name, keyword, comments)
         context = {
             'naver_id' : naver_id,
             'naver_pw' : naver_pw,
@@ -41,6 +41,8 @@ def naverCafeInfo(request):
             'cafe_B_name' : cafe_B_name,
             'keyword' : keyword,
             'comments' : comments_list,
+            'final_hrefs' : final_hrefs,
+            'title' : title
         }
         
     return render(request, 'crawling.html', context=context)

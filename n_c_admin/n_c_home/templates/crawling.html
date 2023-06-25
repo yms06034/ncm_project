@@ -35,6 +35,13 @@
                 <p class="title">댓글 내용</p>
                 <p id="comments"></p>
             </div>
+            <div class="text_area_a">
+                {% for i in final_hrefs %}
+                <a target="_blank" class="title" href="{{ i }}">{{ i }}</a>
+                <!-- <p class="title">댓글 URL</p> -->
+                <p id="hrefs"></p>
+                {% endfor %}
+            </div>
         </div>
 
 
@@ -53,6 +60,8 @@
         const cafeBname = '{{ cafe_B_name | safe }}'
         const keyWord = '{{ keyword | safe }}'
         const comments = "{{ comments | safe }}"
+        const final_hrefs = "{{ final_hrefs | safe }}"
+
 
         const id = document.getElementById('naverid')
         const nn = document.querySelector('p#nickname')
@@ -60,6 +69,7 @@
         const cbn = document.getElementById('cafeBname')
         const kw = document.getElementById('keyword')
         const cmt = document.getElementById('comments')
+        const hrefs = document.getElementById('hrefs')
         const withoutBrackets = comments.replace(/[\[\]']+/g, '');
     
         id.innerText = naverId
@@ -68,6 +78,7 @@
         cbn.innerText = cafeBname
         kw.innerText = keyWord
         cmt.innerText = withoutBrackets
+
     </script>
 {% endblock %}
 

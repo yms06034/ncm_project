@@ -220,6 +220,13 @@ footer {
                 font-size: 16px;
             }
         }
+        .text_area_a {
+            display: flex;
+            flex-direction: column;
+            .title {
+                font-size: 16px;
+            }
+        }
     }
     .back_btn {
         margin-top: 50px;

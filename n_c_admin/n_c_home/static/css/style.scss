@@ -190,8 +190,6 @@ footer {
                 border: 1px solid #bfbfbf;
                 width: 97%;
                 padding: 10px;
-                &::placeholder {
-                }
             }
             .bbtn {
                 padding: 7px 70px;
@@ -235,5 +233,13 @@ footer {
         color: #fff;
         height: 50px;
         cursor: pointer;
+    }
+}
+
+.text_area_a {
+    display: flex;
+    flex-direction: column;
+    .title {
+        font-size: 16px;
     }
 }

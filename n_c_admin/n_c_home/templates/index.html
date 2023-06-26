@@ -11,8 +11,6 @@
 {% block content %}
 <div class="container">
     <div class="content">
-        <p>{{ list1 }}</p>
-        <p>{{ list12 }}</p>
         <p class="top_text">Enter Cafe ID & PW</p>
         <form action="{% url 'app:naverCafeInfo' %}" method="POST">
             {% csrf_token %}

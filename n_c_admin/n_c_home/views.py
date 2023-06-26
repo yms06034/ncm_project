@@ -6,10 +6,7 @@ from django. contrib import auth
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from n_c_home.apis.naverCafeApi import naverCafeCrawling
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy.sql import text, intersect
+from n_c_home.apis.naverCafeSearchApi import naverCafeSearch
 
 import pandas as pd
 import numpy as np
@@ -31,8 +28,8 @@ def naverCafeInfo(request):
         
         comments_list = []
         comments_list.append(comments)
-        
-        # final_hrefs = naverCafeCrawling(naver_id, naver_pw, nick_name, cafe_name, cafe_B_name, keyword, comments)
+        # NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keyword, COMMENTS
+        final_hrefs, title = naverCafeCrawling(naver_id, naver_pw, cafe_name, cafe_B_name, nick_name, keyword, comments)
         context = {
             'naver_id' : naver_id,
             'naver_pw' : naver_pw,
@@ -41,6 +38,23 @@ def naverCafeInfo(request):
             'cafe_B_name' : cafe_B_name,
             'keyword' : keyword,
             'comments' : comments_list,
+            'final_hrefs' : final_hrefs,
+            'title' : title
         }
         
     return render(request, 'crawling.html', context=context)
+
+def naverCafeSearch(request):
+    if request.method == 'POST':
+        naver_id = request.POST['naverid']
+        naver_pw = request.POST['naverpw']
+        nick_name = request.POST['nickname']
+        cafe_name = request.POST['cafename']
+        cafe_B_name = request.POST['cafeBname']
+        keyword = request.POST['keyword']
+        comments = request.POST['comments']
+        
+        text = naverCafeSearch(naver_id, naver_pw, cafe_name, cafe_B_name, nick_name, keyword, comments)
+        
+    return render(request, 'crawling.html', text=text)
+        

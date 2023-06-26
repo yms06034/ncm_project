@@ -18,16 +18,6 @@ import time
 import requests
 import pyperclip
 
-# NAVER_ID = "sjk5838"
-# NAVER_PW = "rlatjdwls00@K"
-
-# CAFENAME = "1motion1"
-# BORADTITLE = "전체글보기"
-# NICKNAME = "최고의일베충소정"
-
-# keyword = "테스트입니다. 이렇게 적으면 "
-# COMMENTS = "Test Comments"
-
 def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keyword, COMMENTS):
 
     def css_finds(css_selector):
@@ -125,7 +115,7 @@ def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keywor
         final_hrefs.append(new_url)
 
     while len(final_hrefs) == 0:
-        # final_hrefs가 빈 리스트인 경우, 계속해서 반복적으로 돌립니다.
+        # If final_hrefs is an empty list, continue to rotate repeatedly.
         time.sleep(1)
         browser.refresh()
         
@@ -211,10 +201,8 @@ def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keywor
                     cmtnicks.append(cmtnick)
 
                 if nickname in cmtnicks:
-                    # 내 닉네임으로 댓글이 있는 경우, 다음 페이지로 넘어감
                     continue
                 else:
-                    # 내 닉네임으로 댓글이 없는 경우, 댓글 작성
                     time.sleep(1)
                     text_area = browser.find_element(By.CLASS_NAME, 'comment_inbox_text')
                     text_area.click()
@@ -224,7 +212,7 @@ def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keywor
                     register_btn = browser.find_element(By.CLASS_NAME, 'btn_register')
                     register_btn.click()
             else:
-                # 댓글 작성
+                # Write Comment
                 time.sleep(1)
                 text_area = browser.find_element(By.CLASS_NAME, 'comment_inbox_text')
                 text_area.click()
@@ -239,6 +227,14 @@ def naverCafeCrawling(NAVER_ID, NAVER_PW, CAFENAME, BORADTITLE, NICKNAME, keywor
 
         cmtnicks.clear()
         
+    time.sleep(3)
     browser.close()
 
-    return final_hrefs
+    title = []
+
+    for da in datas:
+        art_title = da.find(class_='article')
+        art_title.get_text().strip()
+        title.append(art_title)
+
+    return final_hrefs, title
